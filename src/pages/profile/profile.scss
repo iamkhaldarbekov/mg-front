@@ -1,0 +1,23 @@
+.profile-page {
+    .profile-info {
+        line-height: 42px;
+        .profile-info__item {
+            color: #fff;
+            font-size: 25px;
+            font-weight: 700;
+        }
+    }
+    .profile-btns {
+        button {
+            margin: var(--mgbtn);
+        }
+    }
+    .profile-modal {
+        .profile-modal__info {
+            input {
+                display: block;
+                margin: 0 auto var(--mgdft);
+            }
+        }
+    }
+}

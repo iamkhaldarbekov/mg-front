@@ -1,0 +1,43 @@
+.team-page {
+    .team-create {
+        display: flex;
+        .team-create__name {
+            margin-right: var(--mgdft);
+        }
+        .team-create__desc {
+            textarea {
+                width: 400px;
+                height: 140px;
+            }
+        }
+    }
+    .team-create__btn {
+        display: block;
+        margin: var(--mgdft) auto 0;
+    }
+    .team-list {
+        .team-list__item {
+            background-color: #000;
+            margin-top: var(--mgdft);
+            padding: 20px;
+            .team-list__info {
+                display: inline-block;
+                width: 80%;
+                hyphens: auto;
+                .team-list__name {
+                    color: #fff;
+                    font-weight: 700;
+                    font-size: 24px;
+                    margin-bottom: var(--mgdft);
+                }
+                .team-list__desc {
+                    color: #fff;
+                    font-size: 17px;
+                }
+            }
+            .team-list__btn {
+                float: right;
+            }
+        }
+    }
+}

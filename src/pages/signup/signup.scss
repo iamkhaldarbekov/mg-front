@@ -1,0 +1,36 @@
+.signup-page {
+    .signup-page__content {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: var(--darkgray-color);
+        padding: 30px;
+        .signup-page__logo {
+            animation: logo 3s linear infinite alternate;
+            font-family: Tiny5;
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: var(--mgbig);
+        }
+        .signup-page__input {
+            display: block;
+            margin: 0 auto var(--mgdft);
+        }
+        .signup-page__btn {
+            display: block;
+            margin: 0 auto var(--mgbig);
+        }
+        .signup-page__info {
+            color: #fff;
+            font-size: 14px;
+            text-align: center;
+            a {
+                color: #fff;
+                &:hover {
+                    color: var(--gold-color);
+                }
+            }
+        }
+    }
+}
