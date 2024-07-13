@@ -1,5 +1,3 @@
-import './nochat.scss';
-
 export default function NoChat() {
   return (
     <div className="nochat-page page">

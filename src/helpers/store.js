@@ -29,6 +29,10 @@ class Store {
         this.user = data;
     }
 
+    setAuth(status) {
+        this.auth = status;
+    }
+
     setTeam(data) {
         this.team = data;
     }

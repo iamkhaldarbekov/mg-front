@@ -5,10 +5,23 @@
         padding: 25px;
         display: flex;
         justify-content: space-between;
-        .nav__logo {
-            color: #fff;
-            font-family: Tiny5;
-            font-size: 20px;
+        .nav-info {
+            display: flex;
+            align-items: center;
+            .nav-info__logo {
+                color: #fff;
+                font-family: Tiny5;
+                font-size: 20px;
+                cursor: default;
+            }
+            .nav-info__link {
+                color: #fff;
+                margin-left: 40px;
+                font-family: Tiny5; 
+                &:hover {
+                    color: var(--gold-color);
+                }
+            }
         }
     }
     .nav-links {

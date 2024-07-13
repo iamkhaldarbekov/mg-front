@@ -1,20 +1,32 @@
 import './chat.scss';
 import {observer} from 'mobx-react-lite';
 import {useState, useEffect, useRef} from 'react';
+import {Link} from 'react-router-dom';
 
 import Store from '../../helpers/store';
 import {api} from '../../helpers/api';
 import NoChat from './NoChat';
+import {Loader} from '../../components';
 
 function Chat() {
   const [info, setInfo] = useState({});
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
+  const [more, setMore] = useState(true);
+  const [loading, setLoading] = useState(true);
   const ws = useRef();
 
   useEffect(() => {
-    api.post('/api/teams/messages', {team_id: Store.team.team_id})
-    .then(res => setMessages(res.data));
+    api.post('/api/teams/messages', {team_id: Store.team.team_id, point: message.length})
+    .then(res => {
+      if (res.data.length < 100) {
+        setMore(false);
+      }
+
+      setMessages(res.data);
+      setLoading(false);
+    })
+    .catch(e => console.log(e));
 
     ws.current = new WebSocket("ws://localhost:5000/api/teams/chat");
 
@@ -40,9 +52,25 @@ function Chat() {
 
   useEffect(() => {
     const el = document.querySelector(".chat-chat__messages");
+
+    if (el == null) {
+      return;
+    }
     
     el.scrollTop = el.scrollHeight;
   }, [messages]);
+  
+  function loadMessages() {
+    api.post('/api/teams/messages', {team_id: Store.team.team_id, point: messages.length})
+    .then(res => {
+      if (res.data.length < 100) {
+        setMore(false);
+      }
+      
+      setMessages(prev => [...res.data, ...prev]);
+    })
+    .catch(e => console.log(e));
+  }
 
   function sendMessage() {
     if (message.trim().length == 0) {
@@ -65,6 +93,10 @@ function Chat() {
   if (!Store.hasTeam) {
     return <NoChat />
   }
+  
+  if (loading) {
+    return <Loader />
+  }
 
   return (
     <div className="chat-page page">
@@ -74,10 +106,11 @@ function Chat() {
             <p>Сейчас онлайн: {info.online}</p>
           </div>
           <div className="chat-chat__messages">
+            <button className="chat-chat__message_btn btn" style={more ? {display: "inline-block"} : {display: "none"}} onClick={() => loadMessages()}>Загрузить еще...</button>
             {messages[0] ?
               messages.map((el, index) =>
                 <div className={Store.user.user_id == el.user_id ? "chat-chat__message message_owner" : "chat-chat__message"} key={index}>
-                  <p className="chat-chat__message_user">{el.username}</p>
+                  <Link to={'/' + el.username} className="chat-chat__message_user">{el.username}</Link>
                   <p className="chat-chat__message_text">{el.msg}</p>
                 </div>
             ) :

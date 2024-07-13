@@ -18,13 +18,16 @@
             flex-direction: column;
             overflow-y: auto;
             height: 650px;
-            padding: 20px 15px;
+            padding: 15px;
             &::-webkit-scrollbar {
-                width: 5px;
+                width: 3px;
                 background-color: #000;
             }
             &::-webkit-scrollbar-thumb {
-                background-color: #fff;
+                background-color: var(--gray-color);
+            }
+            .chat-chat__message_btn {
+                margin-bottom: var(--mgdft);
             }
             .chat-chat__message {
                 background-color: #fff;
@@ -34,9 +37,13 @@
                 border-radius: 12px;
                 .chat-chat__message_user {
                     color: #000;
+                    display: block;
                     font-weight: 700;
                     font-size: 12px;
                     margin-bottom: 2px;
+                    &:hover {
+                        color: var(--gold-color);
+                    }
                 }
                 .chat-chat__message_text {
                     color: #000;

@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 
 import Store from '../../helpers/store';
 import {api} from '../../helpers/api';
-import {Modal} from '../../components';
+import {Modal, Loader} from '../../components';
 
 function HasTeam() {
   const [users, setUsers] = useState([]);
@@ -15,14 +15,18 @@ function HasTeam() {
   const [errorModal, setErrorModal] = useState(false);
   const [name, setName] = useState(Store.team.name);
   const [desc, setDesc] = useState(Store.team.description);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     api.post('/api/teams/teammates', {team_id: Store.team.team_id})
-    .then(res => setUsers(res.data))
+    .then(res => {
+      setUsers(res.data);
+      setLoading(false);
+    })
     .catch(e => {
       setError(e.response.data.message);
       setErrorModal(true);
-    })
+    });
   }, []);
 
   async function updateTeam() {
@@ -58,6 +62,10 @@ function HasTeam() {
       setError(e.response.data.message);
       setErrorModal(true);
     }
+  }
+  
+  if (loading) {
+    return <Loader />
   }
 
   return (

@@ -133,6 +133,9 @@ body {
     padding: 10px 7px;
     color: #fff;
     outline: none;
+    &::placeholder {
+        font-style: italic;
+    }
 }
 
 .text {
@@ -143,6 +146,9 @@ body {
     outline: none;
     border: 1px solid var(--gray-color);
     resize: none;
+    &::placeholder {
+        font-style: italic;
+    }
 }
 
 .modal__title {

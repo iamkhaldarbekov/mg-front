@@ -2,7 +2,7 @@ import './team.scss';
 import {useState, useEffect} from 'react';
 import {observer} from 'mobx-react-lite';
 
-import {Modal} from '../../components';
+import {Modal, Loader} from '../../components';
 import {api} from '../../helpers/api';
 import Store from '../../helpers/store';
 import HasTeam from './HasTeam';
@@ -13,11 +13,18 @@ function Team() {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [teams, setTeams] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     api.get('/api/teams/get-teams')
-    .then(res => setTeams(...teams, res.data))
-    .catch(e => console.log(e));
+    .then(res => {
+      setTeams(...teams, res.data);
+      setLoading(false);
+    })
+    .catch(e => {
+      setError(e.response.data.message);
+      setErrorModal(true);
+    })
   }, []);
 
   async function createTeam() {
@@ -57,6 +64,10 @@ function Team() {
   if (Store.hasTeam) {
     return <HasTeam />
   }
+
+  if (loading) {
+    return <Loader />
+  }
   
   return (
     <div className="team-page page">
@@ -73,7 +84,7 @@ function Team() {
         </div>
       </div>
       <button className="team-create__btn btn" onClick={() => createTeam()}>Создать команду</button>
-      <p className="page__section">Либо вступите в существующую</p>
+      <p className="page__section">Либо вступите в одну из существующих:</p>
       <div className="team-list">
         {teams.map(el =>
           <div className="team-list__item" key={el.team_id}>
