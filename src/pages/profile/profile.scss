@@ -1,9 +1,14 @@
 .profile-page {
     .profile-info {
+        display: flex;
+        .profile-info__img {
+            margin-right: 100px;
+        }
         .profile-info__item {
             color: #fff;
             margin-top: 10px;
             font-size: 18px;
+            font-weight: 700;
         }
     }
     .profile-btns {

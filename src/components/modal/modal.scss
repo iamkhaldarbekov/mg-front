@@ -6,10 +6,21 @@
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
     .modal__content {
-        background-color: var(--darkgray-color);
-        border: 1px solid var(--gray-color);
+        background-color: #000;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: var(--radiusbig);
         padding: 24px;
         width: fit-content;
+        max-height: 70vh;
+        max-width: 70vw;
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+            width: 3px;
+            background-color: #000;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--gray-color);
+        }
         position: absolute;
         left: 50%;
         top: 50%;

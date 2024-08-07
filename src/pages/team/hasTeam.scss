@@ -8,7 +8,7 @@
         }
     }
     .hasteam-btns {
-        button {
+        button, a {
             margin: var(--mgbtn);
         }
     }
@@ -23,7 +23,6 @@
             padding: 15px;
         }
         .hasteam-list__item {
-            background-color: #000;
             td {
                 color: #fff;
                 text-align: center;
@@ -44,6 +43,39 @@
         }
         .hasteam-modal__info {
             margin-bottom: var(--mgdft);
+            .requests-list {
+                .requests-list__item {
+                    background-color: #000;
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 10px;
+                    .requests-list__name {
+                        color: #fff;
+                        font-size: 20px;
+                        &:hover {
+                            color: var(--gold-color);
+                        }
+                    }
+                    .requests-list__letter {
+                        margin-top: 10px;
+                        hyphens: auto;
+                        color: #fff;
+                    }
+                    .modal-btns {
+                        margin-left: 120px;
+                        align-items: center;
+                        button {
+                            margin-left: 5px;
+                        }
+                    }
+                }
+                .requests-list__empty {
+                    color: #fff;
+                    font-size: 18px;
+                    font-family: Tiny5;
+                    text-align: center;
+                }
+            }
             input {
                 display: block;
                 margin-bottom: var(--mgdft);

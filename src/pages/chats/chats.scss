@@ -1,20 +1,10 @@
-.home-page {
-    .new-teams {
-        .new-teams__list {
-            display: flex;
-            overflow-x: auto;
-            padding: 3px 3px 10px;
-            &::-webkit-scrollbar {
-                background-color: #000;
-                height: 5px;
-            }
-            &::-webkit-scrollbar-thumb {
-                background-color: #fff;
-            }
-            .new-teams__item {
+.chats-page {
+    .common-chats {
+        .common-chats__list {
+            .common-chats__item {
                 display: block;
                 background-color: #000;
-                margin-right: var(--mgdft);
+                width: fit-content;
                 padding: 10px;
                 min-width: 320px;
                 border: 2px solid #000;
@@ -23,13 +13,13 @@
                     transform: scale(1.02);
                     border: 2px solid var(--gold-color);
                 }
-                .new-teams__name {
+                .common-chats__name {
                     color: #fff;
                     font-weight: 700;
                     font-size: 18px;
                     margin-bottom: 10px;
                 }
-                .new-teams__desc {
+                .common-chats__desc {
                     color: #fff;
                     font-size: 15px;
                     margin-bottom: var(--mgbig);

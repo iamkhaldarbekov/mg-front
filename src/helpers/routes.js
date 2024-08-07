@@ -1,5 +1,5 @@
 import {Layout} from '../containers';
-import {Home, Profile, Team, About, Login, Signup, User} from '../pages';
+import {Home, Profile, Team, SomeTeam, About, Login, Signup, User, Chats} from '../pages';
 import {Chat} from '../components';
 
 export const routes = [
@@ -32,7 +32,15 @@ export const routes = [
                 element: <Team />
             },
             {
-                path: 'chat',
+                path: 'team/:name',
+                element: <SomeTeam />
+            },
+            {
+                path: 'chats',
+                element: <Chats />
+            },
+            {
+                path: 'chats/:chat_id',
                 element: <Chat />
             },
             {

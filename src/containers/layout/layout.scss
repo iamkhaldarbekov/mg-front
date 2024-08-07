@@ -1,9 +1,18 @@
 @keyframes logo {
     0% {
-        color: var(--gold-color);
+        color: white
+    }
+    25% {
+        color: lightgoldenrodyellow;
+    }
+    50% {
+        color: gold;
+    }
+    75% {
+        color: orange;
     }
     100% {
-        color: #f7ef8a;
+        color: lightgreen;
     }
 }
 
@@ -11,12 +20,15 @@
     --darkgray-color: #171717;
     --dark-color: #080808;
     --gold-color: #eba715;
+    --darkgold-color: #b87e04;
     --gray-color: #363636;
     --red-color: #c7001b;
-    --mgbtn: 25px 18px 25px 0;
+    --mgbtn: 25px 10px 0 0;
     --mgdft: 15px;
     --mgbig: 30px;
     --fullheight: calc(100vh - 83px);
+    --radiusdft: 5px;
+    --radiusbig: 24px;
 }
 
 * {
@@ -90,18 +102,37 @@ body {
     text-align: center;
 }
 
+.link {
+    display: inline-block;
+    cursor: pointer;
+    font-family: Tiny5;
+    color: #fff;
+    background-color: #000;
+    border-radius: var(--radiusdft);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 7px 10px;
+    font-size: 14px;
+    transition: all 100ms ease;
+    &:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
 .btn {
     cursor: pointer;
     font-family: Tiny5;
-    color: #000;
-    background-color: #fff;
-    border: none;
-    padding: 8px 12px;
-    font-size: 16px;
+    color: #fff;
+    background-color: #000;
+    border-radius: var(--radiusdft);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 7px 10px;
+    font-size: 14px;
     transition: all 100ms ease;
     &:hover {
-        background-color: var(--gold-color);
-        color: #fff;
+        background: rgba(255, 255, 255, 0.2);
     }
     &:active {
         transform: scale(0.95);
@@ -111,14 +142,15 @@ body {
 .btn-red {
     cursor: pointer;
     font-family: Tiny5;
-    color: #000;
-    background-color: #fff;
-    border: none;
-    padding: 8px 12px;
-    font-size: 16px;
+    color: #fff;
+    background-color: #000;
+    border-radius: var(--radiusdft);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 7px 10px;
+    font-size: 14px;
     transition: all 100ms ease;
     &:hover {
-        background-color: var(--red-color);
+        background: rgba(199, 0, 27, 0.5);
         color: #fff;
     }
     &:active {
@@ -128,9 +160,10 @@ body {
 
 .inp {
     background-color: var(--dark-color);
-    border: 1px solid var(--gray-color);
-    font-size: 14px;
-    padding: 10px 7px;
+    border: none;
+    border-radius: var(--radiusdft);
+    font-size: 15px;
+    padding: 7px;
     color: #fff;
     outline: none;
     &::placeholder {
@@ -141,10 +174,11 @@ body {
 .text {
     background-color: var(--dark-color);
     color: #fff;
-    font-size: 14px;
-    padding: 10px 7px;
+    font-size: 15px;
+    padding: 7px;
+    border-radius: var(--radiusdft);
     outline: none;
-    border: 1px solid var(--gray-color);
+    border: none;
     resize: none;
     &::placeholder {
         font-style: italic;
@@ -164,6 +198,11 @@ body {
     font-weight: 700;
     text-align: center;
     margin-bottom: var(--mgdft);
+}
+
+.modal__btn {
+    display: block;
+    margin: 0 auto;
 }
 
 .modal-btns {

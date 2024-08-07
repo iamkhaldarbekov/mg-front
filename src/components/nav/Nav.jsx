@@ -12,7 +12,7 @@ export default function Nav() {
         <ul className="nav-links">
           <Link to='/' className="nav-links__item">Главная</Link>
           <Link to='/team' className="nav-links__item">Команда</Link>
-          <Link to='/chat' className="nav-links__item">Чат</Link>
+          <Link to='/chats' className="nav-links__item">Чаты</Link>
           <Link to='/profile' className="nav-links__item">Профиль</Link>
         </ul>
       </div>

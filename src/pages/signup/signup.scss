@@ -1,5 +1,6 @@
 .signup-page {
     .signup-page__content {
+        min-width: 350px;
         position: absolute;
         left: 50%;
         top: 50%;
@@ -7,7 +8,7 @@
         background-color: var(--darkgray-color);
         padding: 30px;
         .signup-page__logo {
-            animation: logo 3s linear infinite alternate;
+            animation: logo 10s linear infinite alternate;
             font-family: Tiny5;
             font-size: 30px;
             text-align: center;
@@ -27,6 +28,7 @@
             text-align: center;
             a {
                 color: #fff;
+                text-decoration: underline;
                 &:hover {
                     color: var(--gold-color);
                 }

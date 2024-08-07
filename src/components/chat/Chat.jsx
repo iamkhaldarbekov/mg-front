@@ -1,32 +1,39 @@
 import './chat.scss';
 import {observer} from 'mobx-react-lite';
 import {useState, useEffect, useRef} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 import Store from '../../helpers/store';
 import {api} from '../../helpers/api';
 import NoChat from './NoChat';
-import {Loader} from '../../components';
+import {Loader, Modal} from '../../components';
 
 function Chat() {
+  const {chat_id} = useParams();
+
   const [info, setInfo] = useState({});
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const [more, setMore] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [errorModal, setErrorModal] = useState(false);
   const ws = useRef();
 
   useEffect(() => {
-    api.post('/api/teams/messages', {team_id: Store.team.team_id, point: message.length})
+    api.post('/api/teams/messages', {chat_id, point: message.length})
     .then(res => {
       if (res.data.length < 100) {
         setMore(false);
       }
 
       setMessages(res.data);
-      setLoading(false);
     })
-    .catch(e => console.log(e));
+    .catch(e => {
+      setError(e.response?.data?.message);
+      setErrorModal(true);
+    })
+    .finally(() => setLoading(false))
 
     ws.current = new WebSocket("ws://localhost:5000/api/teams/chat");
 
@@ -34,7 +41,7 @@ function Chat() {
       ws.current.send(JSON.stringify({
         type: "connection",
         user_id: Store.user.user_id,
-        team_id: Store.team.team_id
+        chat_id
       }));
     }
 
@@ -56,12 +63,16 @@ function Chat() {
     if (el == null) {
       return;
     }
-    
-    el.scrollTop = el.scrollHeight;
+
+    if (el.scrollTop == 0) {
+      el.scrollTo({top: el.scrollHeight, behavior: "instant"});
+    } else {
+      el.scrollTo({top: el.scrollHeight, behavior: "smooth"});
+    }
   }, [messages]);
   
   function loadMessages() {
-    api.post('/api/teams/messages', {team_id: Store.team.team_id, point: messages.length})
+    api.post('/api/teams/messages', {chat_id, point: messages.length})
     .then(res => {
       if (res.data.length < 100) {
         setMore(false);
@@ -69,7 +80,10 @@ function Chat() {
       
       setMessages(prev => [...res.data, ...prev]);
     })
-    .catch(e => console.log(e));
+    .catch(e => {
+      setError(e.response?.data?.message);
+      setErrorModal(true);
+    });
   }
 
   function sendMessage() {
@@ -81,7 +95,7 @@ function Chat() {
       type: "message",
       msg: message.trim(),
       user_id: Store.user.user_id,
-      team_id: Store.team.team_id,
+      chat_id,
       time: new Date()
     }
 
@@ -90,23 +104,25 @@ function Chat() {
     setMessage("");
   }
 
-  if (!Store.hasTeam) {
-    return <NoChat />
-  }
-  
   if (loading) {
     return <Loader />
   }
 
+  if (!Store.hasTeam) {
+    return <NoChat />
+  }
+
   return (
     <div className="chat-page page">
-        <p className="page__title">Чат: {Store.team.name}</p>
+        <p className="page__title">Чат</p>
         <div className="chat-chat">
           <div className="chat__info">
             <p>Сейчас онлайн: {info.online}</p>
           </div>
           <div className="chat-chat__messages">
-            <button className="chat-chat__message_btn btn" style={more ? {display: "inline-block"} : {display: "none"}} onClick={() => loadMessages()}>Загрузить еще...</button>
+            {more &&
+              <button className="chat-chat__message_btn btn" onClick={() => loadMessages()}>Загрузить еще...</button>
+            }
             {messages[0] ?
               messages.map((el, index) =>
                 <div className={Store.user.user_id == el.user_id ? "chat-chat__message message_owner" : "chat-chat__message"} key={index}>
@@ -122,6 +138,13 @@ function Chat() {
             <button className="chat-chat__btn btn" onClick={() => sendMessage()}>Отправить</button>
           </div>
         </div>
+        <Modal active={errorModal}>
+            <div className="chat-modal">
+              <p className="modal__title">Ошибки:</p>
+              <p className="modal__error">{error}</p>
+              <button className="modal__btn btn" onClick={() => setErrorModal(false)}>ОК</button>
+            </div>
+        </Modal>
     </div>
   )
 }
