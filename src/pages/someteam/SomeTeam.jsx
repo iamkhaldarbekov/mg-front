@@ -1,4 +1,3 @@
-import './someteam.scss';
 import {useParams} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import {observer} from 'mobx-react-lite';
@@ -79,20 +78,20 @@ function SomeTeam() {
   }
   
   return (
-    <div className="someteam-page page">
+    <div className="page">
       <h3 className="page__title">Команда</h3>
-      <p className="page__subtitle">{team.name}</p>
-      <p className="page__subtitle">{team.description}</p>
+      <p className="text-white text-[20px] mb-[10px]">{team.name}</p>
+      <p className="text-white text-[20px] mb-[10px]">{team.description}</p>
       {!Store.hasTeam && requested &&
-        <p className="someteam__requested">Заявка подана</p>
+        <p className="text-gold font-tiny5">Заявка подана</p>
       }
       {!Store.hasTeam && !requested &&
         <button className="btn" onClick={() => setModal(true)}>Подать заявку</button>
       }
       <Modal active={modal}>
-        <div className="someteam-modal">
+        <div>
           <p className="modal__title">Введите письмо заявки:</p>
-          <textarea name="req" id="req" className="text" onChange={e => setLetter(e.target.value)} value={letter} maxLength='255' placeholder='До 255 символов...'/>
+          <textarea name="req" id="req" className="block mt-0 mx-auto mb-dft text" onChange={e => setLetter(e.target.value)} value={letter} maxLength='255' placeholder='До 255 символов...'/>
           <div className="modal-btns">
             <button className="btn" onClick={() => sendRequest()}>Отправить</button>
             <button className="btn-red" onClick={() => setModal(false)}>Отменить</button>
@@ -100,7 +99,7 @@ function SomeTeam() {
         </div>
       </Modal>
       <Modal active={errorModal}>
-        <div className="someteam-modal">
+        <div>
           <p className="modal__title">Ошибки:</p>
           <p className="modal__error">{error}</p>
           <button className="modal__btn btn" onClick={() => setErrorModal(false)}>OK</button>

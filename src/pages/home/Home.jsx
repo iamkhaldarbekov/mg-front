@@ -1,4 +1,3 @@
-import './home.scss';
 import {useState, useEffect} from 'react';
 import {observer} from 'mobx-react-lite';
 import {Link} from 'react-router-dom';
@@ -25,16 +24,16 @@ function Home() {
   }
 
   return (
-    <div className="home-page page">
+    <div className="page">
       <h3 className="page__title">Главная</h3>
       {!Store.hasTeam &&
-        <div className="new-teams">
-          <p className="page__subtitle">Новые команды:</p>
-          <div className="new-teams__list">
+        <div>
+          <p className="text-white font-bold text-[20px] mb-[10px]">Новые команды:</p>
+          <div className="flex overflow-x-auto pt-[3px] px-[3px] pb-[10px]">
             {newTeams.map(el => 
-              <Link className="new-teams__item" to={'/team/' + el.name} key={el.team_id}>
-                <p className="new-teams__name">{el.name}</p>
-                <p className="new-teams__desc">{el.description}</p>
+              <Link className="block min-w-[320px] bg-black mr-big p-[10px] border-2 border-black duration-200 hover:scale-[1.02] hover:border-gold" to={'/team/' + el.name} key={el.team_id}>
+                <p className="text-white font-bold text-[18px] mb-[10px]">{el.name}</p>
+                <p className="text-white text-[15px] mb-big">{el.description}</p>
               </Link>
             )}
           </div>

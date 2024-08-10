@@ -1,4 +1,3 @@
-import './team.scss';
 import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {observer} from 'mobx-react-lite';
@@ -65,42 +64,42 @@ function Team() {
   }
   
   return (
-    <div className="team-page page">
+    <div className="page">
       <h3 className="page__title">Команда</h3>
-      <div className="team-info">
+      <div>
         <p className="page__section">У вас ещё нет команды... Создайте её!</p>
-        <div className="team-create">
-          <div className="team-create__name">
-            <p className="page__subtitle">Название:</p>
+        <div className="flex">
+          <div className="mr-dft">
+            <p className="text-white font-bold mb-dft text-[20px]">Название:</p>
             <input type="text" className="inp" maxLength="30" onChange={e => setName(e.target.value)} value={name} placeholder='1-30 символов...' />
           </div>
-          <div className="team-create__desc">
-            <p className="page__subtitle">Описание:</p>
-            <textarea className="text" maxLength="500" onChange={e => setDesc(e.target.value)} value={desc} placeholder='До 500 символов...' />
+          <div>
+            <p className="text-white font-bold mb-dft text-[20px]">Описание:</p>
+            <textarea className="w-[400px] h-[140px] text" maxLength="500" onChange={e => setDesc(e.target.value)} value={desc} placeholder='До 500 символов...' />
           </div>
         </div>
-        <button className="team-create__btn btn" onClick={() => createTeam()}>Создать команду</button>
+        <button className="block mt-dft mx-auto mb-0 btn" onClick={() => createTeam()}>Создать команду</button>
       </div>
       {teams[0] &&
-        <div className="team-list">
+        <div>
           <p className="page__section">Либо вступите в одну из существующих:</p>
           <input type="text" className="inp" onChange={e => search(e.target.value)} placeholder='Поиск по названию...' />
           {filteredTeams[0] ?
             filteredTeams.map(el =>
-              <Link className="team-list__item" to={'/team/' + el.name} key={el.team_id}>
-                <div className="team-list__info">
-                  <p className="team-list__name">{el.name}</p>
-                  <p className="team-list__desc">{el.description}</p>
+              <Link className="bg-black mt-dft block border-2 border-black p-[20px] duration-200 hover:border-gold hover:scale-[1.02]" to={'/team/' + el.name} key={el.team_id}>
+                <div>
+                  <p className="text-white font-bold text-[24px] mb-[15px]">{el.name}</p>
+                  <p className="text-white text-[17px] hyphens-auto">{el.description}</p>
                 </div>
               </Link>
             )
             :
-            <p className="team-list__empty">Пусто...</p>
+            <p className="text-white text-[20px] font-tiny5 mt-[20px]">Пусто...</p>
           }
         </div>
       }
       <Modal active={errorModal}>
-        <div className="team-modal">
+        <div>
           <p className="modal__title">Ошибка:</p>
           <p className="modal__error">{error}</p>
           <button className="modal__btn btn" onClick={() => setErrorModal(false)}>OK</button>

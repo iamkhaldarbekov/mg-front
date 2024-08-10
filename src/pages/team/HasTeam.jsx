@@ -1,4 +1,3 @@
-import './hasTeam.scss';
 import {observer} from 'mobx-react-lite';
 import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
@@ -103,44 +102,44 @@ function HasTeam() {
   }
 
   return (
-    <div className="hasteam-page page">
+    <div className="page">
       <h3 className="page__title">Команда</h3>
-      <div className="hasteam-info">
-        <p className="hasteam-info__item">Название: {Store.team.name}</p>
-        <p className="hasteam-info__item">Описание: {Store.team.description}</p>
-        <p className="hasteam-info__item">Создан: {new Date(Store.team.created_tmp).getDate()}/{new Date(Store.team.created_tmp).getMonth() + 1}/{new Date(Store.team.created_tmp).getFullYear()}</p>
-        <p className="hasteam-info__item">Участники: {users.length}</p>
+      <div>
+        <p className="text-white mt-[10px] text-[20px] hyphens-auto">Название: {Store.team.name}</p>
+        <p className="text-white mt-[10px] text-[20px] hyphens-auto">Описание: {Store.team.description}</p>
+        <p className="text-white mt-[10px] text-[20px] hyphens-auto">Создан: {new Date(Store.team.created_tmp).getDate()}/{new Date(Store.team.created_tmp).getMonth() + 1}/{new Date(Store.team.created_tmp).getFullYear()}</p>
+        <p className="text-white mt-[10px] text-[20px] hyphens-auto">Участники: {users.length}</p>
         <p></p>
       </div>
-      <div className="hasteam-btns">
-        <Link className="link" to={'/chats/' + Store.team.chat_id}>Чат</Link>
+      <div>
+        <Link className="m-btn link" to={'/chats/' + Store.team.chat_id}>Чат</Link>
         {Store.team.role == "creator" &&
-          <button className="btn" style={requests[0] && {color: "red"}} onClick={() => setModal3(true)}>Заявки</button>
+          <button className="m-btn btn" style={requests[0] && {color: "red"}} onClick={() => setModal3(true)}>Заявки</button>
         }
         {Store.team.role == "creator" && 
-          <button className="btn" onClick={() => setModal2(true)}>Редактировать</button>
+          <button className="m-btn btn" onClick={() => setModal2(true)}>Редактировать</button>
         }
-        <button className="btn-red" onClick={() => setModal(true)}>Покинуть</button>
+        <button className="m-btn btn-red" onClick={() => setModal(true)}>Покинуть</button>
       </div>
       <p className="page__section">Участники:</p>
-      <table className="hasteam-list">
+      <table className="w-[100%] table-fixed border-collapse">
         <thead>
           <tr>
-            <th className="hasteam-list__title">Имя</th>
-            <th className="hasteam-list__title">Роль</th>
-            <th className="hasteam-list__title">Вступил</th>
+            <th className="text-white font-tiny5 font-normal p-[15px]">Имя</th>
+            <th className="text-white font-tiny5 font-normal p-[15px]">Роль</th>
+            <th className="text-white font-tiny5 font-normal p-[15px]">Вступил</th>
             {Store.team.role == "creator" &&
-              <th className="hasteam-list__title">Действия</th>
+              <th className="text-white font-tiny5 font-normal p-[15px]">Действия</th>
             }
           </tr>
         </thead>
         <tbody>
           {users.map(el => 
-            <tr className="hasteam-list__item" style={el.user_id == Store.user.user_id ? {backgroundColor: "var(--darkgold-color)"} : {backgroundColor: "#000"}} key={el.user_id}>
-              <td><Link to={'/' + el.username}>{el.username}</Link></td>
-              <td>{el.role == "creator" ? "Создатель" : "Участник"}</td>
-              <td>{new Date(el.entered_tmp).getDate()}/{new Date(el.entered_tmp).getMonth() + 1}/{new Date(el.entered_tmp).getFullYear()}</td>
-              <td style={Store.team.role == "creator" ? {display: "table-cell"} : {display: "none"}}>
+            <tr className={Store.user.user_id == el.user_id ? 'bg-darkgold' : 'bg-black'} key={el.user_id}>
+              <td className='text-white text-center p-[15px]'><Link className='text-white hover:text-gold' to={'/' + el.username}>{el.username}</Link></td>
+              <td className='text-white text-center p-[15px]'>{el.role == "creator" ? "Создатель" : "Участник"}</td>
+              <td className='text-white text-center p-[15px]'>{new Date(el.entered_tmp).getDate()}/{new Date(el.entered_tmp).getMonth() + 1}/{new Date(el.entered_tmp).getFullYear()}</td>
+              <td className='text-white text-center p-[15px]' style={Store.team.role == "creator" ? {display: "table-cell"} : {display: "none"}}>
               {Store.team.role == "creator" && el.user_id != Store.user.user_id &&
                 <button className="btn-red" onClick={() => kick(el.user_id)}>Изгнать</button>
               }
@@ -150,7 +149,7 @@ function HasTeam() {
         </tbody>
       </table>
       <Modal active={modal}>
-          <div className="hasteam-modal">
+          <div>
             <p className="modal__title">Вы точно хотите покинуть команду?</p>
             <div className="modal-btns">
               <button className="btn" onClick={() => leaveTeam()}>Да</button>
@@ -159,11 +158,11 @@ function HasTeam() {
           </div>
       </Modal>
       <Modal active={modal2}>
-          <div className="hasteam-modal">
+          <div>
             <p className="modal__title">Введите новые данные команды:</p>
-            <div className="hasteam-modal__info">
-              <input type="text" className="inp" placeholder="Название..." maxLength="30" onChange={e => setName(e.target.value)} value={name} />
-              <textarea className="text" placeholder="Описание..." maxLength="255" onChange={e => setDesc(e.target.value)} value={desc} />
+            <div className="mb-dft">
+              <input type="text" className="block mb-dft inp" placeholder="Название..." maxLength="30" onChange={e => setName(e.target.value)} value={name} />
+              <textarea className="w-[100%] text" placeholder="Описание..." maxLength="255" onChange={e => setDesc(e.target.value)} value={desc} />
             </div>
             <div className="modal-btns">
               <button className="btn" onClick={() => updateTeam()}>Сохранить</button>
@@ -172,24 +171,24 @@ function HasTeam() {
           </div>
       </Modal>
       <Modal active={modal3}>
-          <div className="hasteam-modal">
+          <div>
             <p className="modal__title">Заявки:</p>
-            <div className="hasteam-modal__info">
-              <div className="requests-list">
+            <div className="mb-dft">
+              <div>
                 {requests[0] ?
                   requests.map(el =>
-                    <div className="requests-list__item" key={el.request_id}>
+                    <div className="bg-black flex justify-between p-[10px]" key={el.request_id}>
                       <div>
-                        <Link className="requests-list__name" to={'/' + el.username}>{el.username}</Link>
-                        <p className="requests-list__letter">{el.letter}</p>
+                        <Link className="text-white text-[20px] hover:text-gold" to={'/' + el.username}>{el.username}</Link>
+                        <p className="mt-[10px] hyphens-auto text-white">{el.letter}</p>
                       </div>
-                      <div className="modal-btns">
-                        <button className="btn" onClick={() => acceptRequest(el.request_id, el.user_id)}>Принять</button>
-                        <button className="btn-red" onClick={() => declineRequest(el.request_id)}>Отклонить</button>
+                      <div className="ml-[120px] items-center modal-btns">
+                        <button className="ml-[5px] btn" onClick={() => acceptRequest(el.request_id, el.user_id)}>Принять</button>
+                        <button className="ml-[5px] btn-red" onClick={() => declineRequest(el.request_id)}>Отклонить</button>
                       </div>
                     </div>
                   ) :
-                  <p className="requests-list__empty">Пусто... Заявок в вашу команду пока нет!</p>
+                  <p className="text-white text-[18px] font-tiny5 text-center">Пусто... Заявок в вашу команду пока нет!</p>
                 }
               </div>
             </div>
@@ -197,7 +196,7 @@ function HasTeam() {
           </div>
       </Modal>
       <Modal active={errorModal}>
-          <div className="hasteam-modal">
+          <div>
             <p className="modal__title">Ошибки:</p>
             <p className="modal__error">{error}</p>
             <button className="modal__btn btn" onClick={() => setErrorModal(false)}>OK</button>

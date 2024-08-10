@@ -1,4 +1,3 @@
-import './profile.scss';
 import {observer} from 'mobx-react-lite';
 import {useState} from 'react';
 
@@ -43,26 +42,26 @@ function Profile() {
   }
 
   return (
-    <div className="profile-page page">
+    <div className="page">
       <h3 className="page__title">Профиль</h3>
-      <ul className="profile-info">
-        <img src={Store.user.img} alt="user" className="profile-info__img" />
+      <ul className="flex">
+        <img src={Store.user.img} alt="user" className="mr-[100px]" />
         <div>
-          <li className="profile-info__item">Имя: {Store.user.username}</li>
-          <li className="profile-info__item">Почта: {Store.user.email}</li>
-          <li className="profile-info__item">О себе: {Store.user.bio}</li>
+          <li className="text-white mt-[10px] text-[18px] font-bold">Имя: {Store.user.username}</li>
+          <li className="text-white mt-[10px] text-[18px] font-bold">Почта: {Store.user.email}</li>
+          <li className="text-white mt-[10px] text-[18px] font-bold">О себе: {Store.user.bio}</li>
         </div>
       </ul>
-      <div className="profile-btns">
-        <button className="btn" onClick={() => setModal(true)}>Редактировать</button>
-        <button className="btn-red" onClick={() => setModal2(true)}>Выйти</button>
+      <div>
+        <button className="btn m-btn" onClick={() => setModal(true)}>Редактировать</button>
+        <button className="btn-red m-btn" onClick={() => setModal2(true)}>Выйти</button>
       </div>
       <Modal active={modal}>
-        <div className="profile-modal">
+        <div>
           <p className="modal__title">Введите ваши новые данные:</p>
-          <div className="profile-modal__info">
-            <input type="text" className="inp" placeholder='Имя...' onChange={e => setUsername(e.target.value)} value={username} maxLength="30" />
-            <input type="text" className="inp" placeholder='О себе...' onChange={e => setBio(e.target.value)} value={bio} maxLength="255" />
+          <div>
+            <input type="text" className="inp block mx-auto mb-dft" placeholder='Имя...' onChange={e => setUsername(e.target.value)} value={username} maxLength="30" />
+            <input type="text" className="inp block mx-auto mb-dft" placeholder='О себе...' onChange={e => setBio(e.target.value)} value={bio} maxLength="255" />
           </div>
           <div className="modal-btns">
             <button className="btn" onClick={() => update()}>Сохранить</button>
@@ -71,7 +70,7 @@ function Profile() {
         </div>
       </Modal>
       <Modal active={modal2}>
-        <div className="profile-modal">
+        <div>
           <p className="modal__title">Вы точно хотите выйти?</p>
           <div className="modal-btns">
             <button className="btn" onClick={() => logout()}>Да</button>
@@ -80,7 +79,7 @@ function Profile() {
         </div>
       </Modal>
       <Modal active={errorModal}>
-        <div className="profile-modal">
+        <div>
           <p className="modal__title">Ошибки:</p>
           <p className="modal__error">{error}</p>
           <button className="modal__btn btn" onClick={() => setErrorModal(false)}>OK</button>

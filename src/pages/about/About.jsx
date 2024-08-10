@@ -1,17 +1,15 @@
-import './about.scss'
-
 export default function About() {
   return (
-    <div className="about-page page">
+    <div className="page">
       <h3 className="page__title">О Merger</h3>
-      <div className="about-info">
-        <p className="about-info__text">Так...</p>
+      <div>
+        <p className="text-white text-center">Так...</p>
         <br />
-        <p className="about-info__text">Этот проект про объединение единомышленников, то есть создание команды для людей со схожими целями.</p>
+        <p className="text-white text-center">Этот проект про объединение единомышленников, то есть создание команды для людей со схожими целями.</p>
         <br />
-        <p className="about-info__text">Это не про найм работников, каждый ищет подходящюю для себя команду.</p>
+        <p className="text-white text-center">Это не про найм работников, каждый ищет подходящюю для себя команду.</p>
         <br />
-        <p className="about-info__text">Информация дополняется...</p>
+        <p className="text-white text-center">Информация дополняется...</p>
       </div>
     </div>
   )

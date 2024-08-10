@@ -1,4 +1,3 @@
-import './chat.scss';
 import {observer} from 'mobx-react-lite';
 import {useState, useEffect, useRef} from 'react';
 import {Link, useParams} from 'react-router-dom';
@@ -113,33 +112,33 @@ function Chat() {
   }
 
   return (
-    <div className="chat-page page">
+    <div className="page min-h-full">
         <p className="page__title">Чат</p>
-        <div className="chat-chat">
-          <div className="chat__info">
-            <p>Сейчас онлайн: {info.online}</p>
+        <div className="bg-black relative w-[85%] my-0 mx-auto">
+          <div className="border-b-[1px] border-gray p-[5px]">
+            <p className="text-white font-tiny5">Сейчас онлайн: {info.online}</p>
           </div>
-          <div className="chat-chat__messages">
+          <div className="flex flex-col overflow-y-auto h-[650px] p-[15px]">
             {more &&
-              <button className="chat-chat__message_btn btn" onClick={() => loadMessages()}>Загрузить еще...</button>
+              <button className="mb-dft btn" onClick={() => loadMessages()}>Загрузить еще...</button>
             }
             {messages[0] ?
               messages.map((el, index) =>
-                <div className={Store.user.user_id == el.user_id ? "chat-chat__message message_owner" : "chat-chat__message"} key={index}>
-                  <Link to={'/' + el.username} className="chat-chat__message_user">{el.username}</Link>
-                  <p className="chat-chat__message_text">{el.msg}</p>
+                <div className={Store.user.user_id == el.user_id ? "bg-[#026199] w-fit p-[7px] mt-[5px] rounded-mid self-end" : "bg-white w-fit p-[7px] mt-[5px] rounded-mid"} key={index}>
+                  <Link to={'/' + el.username} className="text-black block font-bold text-[12px] mb-[2px] hover:text-gold">{el.username}</Link>
+                  <p className="text-white">{el.msg}</p>
                 </div>
             ) :
-              <p className="chat-chat__message_empty">Пусто... Напишите первое сообщение!</p>
+                <p className="absolute text-black bg-white rounded-mid p-[7px] font-tiny5 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">Пусто... Напишите первое сообщение!</p>
             }
           </div>
-          <div className="chat-chat__items">
-            <input type="text" className="chat-chat__input inp" onChange={(e) => setMessage(e.target.value)} value={message} onKeyUp={e => e.keyCode == 13 && sendMessage()} placeholder='Введите сообщение...' autoFocus maxLength="255" />
-            <button className="chat-chat__btn btn" onClick={() => sendMessage()}>Отправить</button>
+          <div>
+            <input type="text" className="w-[88%] inp" onChange={(e) => setMessage(e.target.value)} value={message} onKeyUp={e => e.keyCode == 13 && sendMessage()} placeholder='Введите сообщение...' autoFocus maxLength="255" />
+            <button className="w-[12%] rounded-none btn" onClick={() => sendMessage()}>Отправить</button>
           </div>
         </div>
         <Modal active={errorModal}>
-            <div className="chat-modal">
+            <div>
               <p className="modal__title">Ошибки:</p>
               <p className="modal__error">{error}</p>
               <button className="modal__btn btn" onClick={() => setErrorModal(false)}>ОК</button>

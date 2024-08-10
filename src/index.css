@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: "Inter";
+        src: url('./assets/fonts/Inter-Regular.ttf');
+        font-weight: 400;
+    }
+    
+    @font-face {
+        font-family: "Inter";
+        src: url('./assets/fonts/Inter-Bold.ttf');
+        font-weight: 700;
+    }
+    
+    @font-face {
+        font-family: "Tiny5";
+        src: url('./assets/fonts/Tiny5-Regular.ttf');
+        font-weight: 400;
+    }
+}
+
+@layer components {
+    .page {
+        @apply bg-darkgray p-[25px];
+    }
+    .page__title {
+        @apply text-white text-[30px] font-semibold mb-big;
+    }
+    .page__section {
+        @apply text-white font-tiny5 uppercase text-[18px] my-[45px] text-center;
+    }
+    .btn {
+        @apply text-white text-[14px] bg-black rounded-dft font-tiny5 duration-100 py-[7px] px-[10px] hover:bg-white/[0.15] active:scale-[0.95];
+    }
+    .btn-red {
+        @apply text-white text-[14px] bg-black rounded-dft font-tiny5 duration-100 py-[7px] px-[10px] hover:bg-red/[0.5] active:scale-[0.95];
+    }
+    .link {
+        @apply inline-block text-white text-[14px] bg-black rounded-dft font-tiny5 duration-100 py-[7px] px-[10px] hover:bg-white/[0.15] active:scale-[0.95];
+    }
+    .inp {
+        @apply bg-dark rounded-dft text-[15px] p-[7px] text-white outline-none border-none placeholder:italic;
+    }
+    .text {
+        @apply bg-dark text-white text-[15px] p-[7px] rounded-dft outline-none border-none resize-none placeholder:italic;
+    }
+    .modal__title {
+        @apply text-white font-bold text-[20px] mb-dft text-center;
+    }
+    .modal__error {
+        @apply text-red font-bold text-center mb-dft;
+    }
+    .modal__btn {
+        @apply block my-0 mx-auto;
+    }
+    .modal-btns {
+        @apply flex justify-around;
+    }
+}

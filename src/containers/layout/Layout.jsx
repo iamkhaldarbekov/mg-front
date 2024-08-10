@@ -1,4 +1,3 @@
-import './layout.scss';
 import {Outlet, Navigate} from 'react-router-dom';
 import {observer} from 'mobx-react-lite';
 import {useEffect, useState} from 'react';
@@ -43,7 +42,7 @@ function Layout() {
   }
 
   return (
-    <div className="wrapper">
+    <div className="font-inter w-[1096px] mx-auto my-0">
         <Nav />
         <Outlet />
     </div>

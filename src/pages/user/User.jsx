@@ -1,4 +1,3 @@
-import './user.scss';
 import {useParams} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 
@@ -34,15 +33,15 @@ export default function User() {
   }
 
   return (
-    <div className="user-page page">
-        <div className="user-info">
-          <img src={user.img} alt="user" className="user-info__item" />
-          <p className="user-info__item">Имя: {user.username}</p>
-          <p className="user-info__item">Команда: {user.name}</p>
-          <p className="user-info__item">О себе: {user.bio}</p>
+    <div className="page">
+        <div className="leading-[42px]">
+          <img src={user.img} alt="user" className="text-white text-[25px] font-bold" />
+          <p className="text-white text-[25px] font-bold">Имя: {user.username}</p>
+          <p className="text-white text-[25px] font-bold">Команда: {user.name}</p>
+          <p className="text-white text-[25px] font-bold">О себе: {user.bio}</p>
         </div>
         <Modal active={errorModal}>
-          <div className="user-modal">
+          <div>
             <p className="modal__title">Ошибки:</p>
             <p className="modal__error">{error}</p>
             <button className="modal__btn btn" onClick={() => setErrorModal(false)}>ОК</button>

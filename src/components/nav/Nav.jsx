@@ -1,19 +1,18 @@
-import './nav.scss';
 import {Link} from 'react-router-dom';
 
 export default function Nav() {
   return (
-    <nav className="nav">
-      <div className="nav__inner">
-        <div className="nav-info">
-          <p className="nav-info__logo">MERGER</p>
-          <Link to='/about' className="nav-info__link">О Merger</Link>
+    <nav className="bg-darkgray mb-[10px]">
+      <div className="p-[25px] flex justify-between">
+        <div className="flex items-center">
+          <p className="text-white font-tiny5 text-[20px] cursor-default">MERGER</p>
+          <Link to='/about' className="text-white ml-[40px] font-tiny5 hover:text-gold">О Merger</Link>
         </div>
-        <ul className="nav-links">
-          <Link to='/' className="nav-links__item">Главная</Link>
-          <Link to='/team' className="nav-links__item">Команда</Link>
-          <Link to='/chats' className="nav-links__item">Чаты</Link>
-          <Link to='/profile' className="nav-links__item">Профиль</Link>
+        <ul className="flex items-center">
+          <Link to='/' className="text-white ml-[30px] font-tiny5 hover:text-gold">Главная</Link>
+          <Link to='/team' className="text-white ml-[30px] font-tiny5 hover:text-gold">Команда</Link>
+          <Link to='/chats' className="text-white ml-[30px] font-tiny5 hover:text-gold">Чаты</Link>
+          <Link to='/profile' className="text-white ml-[30px] font-tiny5 hover:text-gold">Профиль</Link>
         </ul>
       </div>
     </nav>

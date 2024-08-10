@@ -1,4 +1,3 @@
-import './login.scss';
 import {Link, Navigate} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import {observer} from 'mobx-react-lite';
@@ -58,16 +57,16 @@ function Login() {
   }
 
   return (
-    <div className="login-page">
-      <div className="login-page__content">
-        <p className="login-page__logo">MERGER</p>
-        <input type="text" className="login-page__input inp" onChange={e => setEmail(e.target.value)} value={email} placeholder='Введите email...' />
-        <input type="password" className="login-page__input inp" onChange={e => setPassword(e.target.value)} value={password} placeholder='Введите пароль...' />
-        <button className="login-page__btn btn" onClick={() => login()}>Войти</button>
-        <p className="login-page__info">Впервые в Merger? <Link to="/signup">Зарегистрируйтесь</Link></p>
+    <div>
+      <div className="min-w-[350px] absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] bg-darkgray p-[30px]">
+        <p className="animate-logo font-tiny5 text-[30px] text-center mb-big">MERGER</p>
+        <input type="text" className="block mt-0 mx-auto mb-dft inp" onChange={e => setEmail(e.target.value)} value={email} placeholder='Введите email...' />
+        <input type="password" className="block mt-0 mx-auto mb-dft inp" onChange={e => setPassword(e.target.value)} value={password} placeholder='Введите пароль...' />
+        <button className="block mt-0 mx-auto mb-big btn" onClick={() => login()}>Войти</button>
+        <p className="text-white text-[14px] text-center">Впервые в Merger? <Link className='text-white underline hover:text-gold' to="/signup">Зарегистрируйтесь</Link></p>
       </div>
       <Modal active={errorModal}>
-        <div className="login-modal">
+        <div>
           <p className="modal__title">Ошибки:</p>
           <p className="modal__error">{error}</p>
           <button className="modal__btn btn" onClick={() => setErrorModal(false)}>OK</button>
