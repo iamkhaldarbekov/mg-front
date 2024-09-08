@@ -58,11 +58,11 @@ function Login() {
 
   return (
     <div>
-      <div className="min-w-[350px] absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] bg-darkgray p-[30px]">
+      <div className="min-w-[350px] centered bg-darkgray p-[30px]">
         <p className="animate-logo font-tiny5 text-[30px] text-center mb-big">MERGER</p>
-        <input type="text" className="block mt-0 mx-auto mb-dft inp" onChange={e => setEmail(e.target.value)} value={email} placeholder='Введите email...' />
-        <input type="password" className="block mt-0 mx-auto mb-dft inp" onChange={e => setPassword(e.target.value)} value={password} placeholder='Введите пароль...' />
-        <button className="block mt-0 mx-auto mb-big btn" onClick={() => login()}>Войти</button>
+        <input type="text" className="block mx-auto mb-dft inp" onChange={e => setEmail(e.target.value)} value={email} placeholder='Введите email...' />
+        <input type="password" className="block mx-auto mb-dft inp" onChange={e => setPassword(e.target.value)} value={password} placeholder='Введите пароль...' />
+        <button className="block mx-auto mb-big btn" onClick={() => login()}>Войти</button>
         <p className="text-white text-[14px] text-center">Впервые в Merger? <Link className='text-white underline hover:text-gold' to="/signup">Зарегистрируйтесь</Link></p>
       </div>
       <Modal active={errorModal}>

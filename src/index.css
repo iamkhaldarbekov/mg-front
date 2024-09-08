@@ -23,6 +23,9 @@
 }
 
 @layer components {
+    .centered {
+        @apply absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%];
+    }
     .page {
         @apply bg-darkgray p-[25px];
     }
@@ -30,16 +33,16 @@
         @apply text-white text-[30px] font-semibold mb-big;
     }
     .page__section {
-        @apply text-white font-tiny5 uppercase text-[18px] my-[45px] text-center;
+        @apply text-white font-tiny5 uppercase text-[18px] mt-[45px] mb-[30px] text-center;
     }
     .btn {
-        @apply text-white text-[14px] bg-black rounded-dft font-tiny5 duration-100 py-[7px] px-[10px] hover:bg-white/[0.15] active:scale-[0.95];
+        @apply text-white text-[14px] bg-black border-[1px] border-white/[0.15] rounded-dft font-tiny5 duration-100 py-[7px] px-[10px] hover:bg-white/[0.15] active:scale-[0.95];
     }
     .btn-red {
-        @apply text-white text-[14px] bg-black rounded-dft font-tiny5 duration-100 py-[7px] px-[10px] hover:bg-red/[0.5] active:scale-[0.95];
+        @apply text-white text-[14px] bg-black border-[1px] border-white/[0.15] rounded-dft font-tiny5 duration-100 py-[7px] px-[10px] hover:bg-red/[0.5] active:scale-[0.95];
     }
     .link {
-        @apply inline-block text-white text-[14px] bg-black rounded-dft font-tiny5 duration-100 py-[7px] px-[10px] hover:bg-white/[0.15] active:scale-[0.95];
+        @apply inline-block text-white text-[14px] border-[1px] border-white/[0.15] bg-black rounded-dft font-tiny5 duration-100 py-[7px] px-[10px] hover:bg-white/[0.15] active:scale-[0.95];
     }
     .inp {
         @apply bg-dark rounded-dft text-[15px] p-[7px] text-white outline-none border-none placeholder:italic;
@@ -54,9 +57,9 @@
         @apply text-red font-bold text-center mb-dft;
     }
     .modal__btn {
-        @apply block my-0 mx-auto;
+        @apply block mx-auto;
     }
     .modal-btns {
-        @apply flex justify-around;
+        @apply flex justify-around mt-[25px];
     }
 }

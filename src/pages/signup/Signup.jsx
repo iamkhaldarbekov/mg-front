@@ -36,17 +36,17 @@ function Signup() {
   }
   
   return (
-    <div className="signup-page">
-      <div className="signup-page__content">
-        <p className="signup-page__logo">MERGER</p>
-        <input type="text" className="signup-page__input inp" onChange={e => setEmail(e.target.value)} value={email} placeholder='Введите email...' />
-        <input type="text" className="signup-page__input inp" onChange={e => setUsername(e.target.value)} value={username} placeholder='Введите имя пользователя...' maxLength='30' />
-        <input type="password" className="signup-page__input inp" onChange={e => setPassword(e.target.value)} value={password} placeholder='Введите пароль...' />
-        <button className="signup-page__btn btn" onClick={() => signup()}>Регистрация</button>
-        <p className="signup-page__info">Уже есть аккаунт? <Link to="/login">Войдите</Link></p>
+    <div>
+      <div className="min-w-[350px] centered bg-darkgray p-[30px]">
+        <p className="animate-logo font-tiny5 text-[30px] text-center mb-big">MERGER</p>
+        <input type="text" className="block mx-auto mb-dft inp" onChange={e => setEmail(e.target.value)} value={email} placeholder='Введите email...' />
+        <input type="text" className="block mx-auto mb-dft inp" onChange={e => setUsername(e.target.value)} value={username} placeholder='Введите имя пользователя...' maxLength='30' />
+        <input type="password" className="block mx-auto mb-dft inp" onChange={e => setPassword(e.target.value)} value={password} placeholder='Введите пароль...' />
+        <button className="block mx-auto mb-big btn" onClick={() => signup()}>Регистрация</button>
+        <p className="text-white text-[14px] text-center">Уже есть аккаунт? <Link to="/login">Войдите</Link></p>
       </div>
       <Modal active={errorModal}>
-        <div className="signup-modal">
+        <div>
           <p className="modal__title">Ошибки:</p>
           <p className="modal__error">{error}</p>
           <button className="modal__btn btn" onClick={() => setErrorModal(false)}>OK</button>

@@ -10,10 +10,15 @@ module.exports = {
           "50%": {color: "gold"},
           "75%": {color: "orange"},
           "100%": {color: "lightgreen"},
+        },
+        message: {
+          "0%": {opacity: "0", transform: "translateY(50px)"},
+          "100%": {opacity: "1", transform: "translateY(0)"}
         }
       },
       animation: {
-        logo: "logo 10s linear infinite alternate"
+        logo: "logo 10s linear infinite alternate",
+        message: "message 100ms ease"
       },
       fontFamily: {
         inter: "Inter",

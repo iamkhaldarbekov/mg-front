@@ -1,5 +1,5 @@
 import {Layout} from '../containers';
-import {Home, Profile, Team, SomeTeam, About, Login, Signup, User, Chats} from '../pages';
+import {Home, Profile, Team, SomeTeam, About, Login, Signup, User, Chats, Users} from '../pages';
 import {Chat} from '../components';
 
 export const routes = [
@@ -26,6 +26,10 @@ export const routes = [
             {
                 path: 'profile',
                 element: <Profile />
+            },
+            {
+                path: 'users',
+                element: <Users />
             },
             {
                 path: 'team',

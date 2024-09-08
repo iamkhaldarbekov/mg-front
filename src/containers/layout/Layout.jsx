@@ -38,7 +38,7 @@ function Layout() {
   }
 
   if (!Store.auth) {
-    return <Navigate to='/login' />
+    return <Navigate to='/login' replace={true} />
   }
 
   return (
