@@ -59,7 +59,8 @@ function Chat() {
     ])
     .then(() => setLoading(false))
 
-    ws.current = new WebSocket("ws://localhost:5000/api/chat");
+    // Эндпоинт бэкенда
+    ws.current = new WebSocket("ws://mg-back.onrender.com/api/chat");
 
     ws.current.onopen = () => {
       ws.current.send(JSON.stringify({
