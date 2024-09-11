@@ -60,7 +60,7 @@ function Chat() {
     .then(() => setLoading(false))
 
     // Эндпоинт бэкенда
-    ws.current = new WebSocket("ws://mg-back.onrender.com/api/chat");
+    ws.current = new WebSocket("wss://mg-back.onrender.com/api/chat");
 
     ws.current.onopen = () => {
       ws.current.send(JSON.stringify({
